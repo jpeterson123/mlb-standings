@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MLB Standings</title>
+<style>
+  :root {
+    --bg: #0b1120;
+    --card-bg: #131b2e;
+    --border: #23304a;
+    --text: #e7ecf5;
+    --muted: #8fa1c2;
+    --al: #c8102e;
+    --nl: #002d72;
+    --gold: #d4af37;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(180deg, var(--bg) 0%, #0e1730 100%);
+    color: var(--text);
+    padding: 0 0 3rem;
+  }
+  header {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    letter-spacing: 0.04em;
+  }
+  header h1 span { color: var(--gold); }
+  header p {
+    margin: 0.5rem 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .league-section {
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    padding: 0 1.5rem;
+  }
+  .league-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 2rem 0 1rem;
+  }
+  .league-heading .bar {
+    width: 6px;
+    height: 1.5rem;
+    border-radius: 3px;
+  }
+  .league-heading.al .bar { background: var(--al); }
+  .league-heading.nl .bar { background: var(--nl); }
+  .league-heading h2 { margin: 0; font-size: 1.4rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+  }
+  .division-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem 1.3rem;
+  }
+  .division-card h3 {
+    margin: 0 0 0.8rem;
+    font-size: 1rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: right;
+    padding: 0.4rem 0.3rem;
+  }
+  th:first-child, td:first-child { text-align: left; }
+  thead th {
+    color: var(--muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+  }
+  tbody tr:not(:last-child) td {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  tbody tr:first-child td {
+    font-weight: 700;
+    color: var(--gold);
+  }
+  td.team { color: var(--text); }
+  footer {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    padding: 1.2rem 1.5rem 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>MLB <span>Standings</span></h1>
+    <p>2026 Regular Season</p>
+  </header>
+
+  <section class="league-section">
+    <div class="league-heading al">
+      <div class="bar"></div>
+      <h2>American League</h2>
+    </div>
+    <div class="grid">
+    <div class="division-card">
+      <h3>AL East</h3>
+      <table>
+        <thead>
+          <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="team">Tampa Bay Rays</td>
+          <td>97</td>
+          <td>63</td>
+          <td>.606</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <td class="team">New York Yankees</td>
+          <td>93</td>
+          <td>68</td>
+          <td>.578</td>
+          <td>4.5</td>
+        </tr>
+        <tr>
+          <td class="team">Boston Red Sox</td>
+          <td>87</td>
+          <td>74</td>
+          <td>.540</td>
+          <td>10.5</td>
+        </tr>
+        <tr>
+          <td class="team">Baltimore Orioles</td>
+          <td>79</td>
+          <td>82</td>
+          <td>.491</td>
+          <td>18.5</td>
+        </tr>
+        <tr>
+          <td class="team">Toronto Blue Jays</td>
+          <td>78</td>
+          <td>82</td>
+          <td>.488</td>
+          <td>19.0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="division-card">
+      <h3>AL Central</h3>
+      <table>
+        <thead>
+          <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="team">Cleveland Guardians</td>
+          <td>84</td>
+          <td>76</td>
+          <td>.525</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <td class="team">Chicago White Sox</td>
+          <td>83</td>
+          <td>77</td>
+          <td>.519</td>
+          <td>1.0</td>
+        </tr>
+        <tr>
+          <td class="team">Minnesota Twins</td>
+          <td>76</td>
+          <td>84</td>
+          <td>.475</td>
+          <td>8.0</td>
+        </tr>
+        <tr>
+          <td class="team">Detroit Tigers</td>
+          <td>75</td>
+          <td>85</td>
+          <td>.469</td>
+          <td>9.0</td>
+        </tr>
+        <tr>
+          <td class="team">Kansas City Royals</td>
+          <td>68</td>
+          <td>92</td>
+          <td>.425</td>
+          <td>16.0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="division-card">
+      <h3>AL West</h3>
+      <table>
+        <thead>
+          <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="team">Houston Astros</td>
+          <td>79</td>
+          <td>81</td>
+          <td>.494</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <td class="team">Texas Rangers</td>
+          <td>79</td>
+          <td>81</td>
+          <td>.494</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <td class="team">Seattle Mariners</td>
+          <td>74</td>
+          <td>86</td>
+          <td>.463</td>
+          <td>5.0</td>
+        </tr>
+        <tr>
+          <td class="team">Athletics</td>
+          <td>64</td>
+          <td>96</td>
+          <td>.400</td>
+          <td>15.0</td>
+        </tr>
+        <tr>
+          <td class="team">Los Angeles Angels</td>
+          <td>62</td>
+          <td>98</td>
+          <td>.388</td>
+          <td>17.0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    <div class="league-heading nl">
+      <div class="bar"></div>
+      <h2>National League</h2>
+    </div>
+    <div class="grid">
+    <div class="division-card">
+      <h3>NL East</h3>
+      <table>
+        <thead>
+          <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="team">Atlanta Braves</td>
+          <td>93</td>
+          <td>67</td>
+          <td>.581</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <td class="team">Philadelphia Phillies</td>
+          <td>87</td>
+          <td>73</td>
+          <td>.544</td>
+          <td>6.0</td>
+        </tr>
+        <tr>
+          <td class="team">Miami Marlins</td>
+          <td>79</td>
+          <td>81</td>
+          <td>.494</td>
+          <td>14.0</td>
+        </tr>
+        <tr>
+          <td class="team">Washington Nationals</td>
+          <td>76</td>
+          <td>84</td>
+          <td>.475</td>
+          <td>17.0</td>
+        </tr>
+        <tr>
+          <td class="team">New York Mets</td>
+          <td>73</td>
+          <td>87</td>
+          <td>.456</td>
+          <td>20.0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="division-card">
+      <h3>NL Central</h3>
+      <table>
+        <thead>
+          <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="team">Milwaukee Brewers</td>
+          <td>101</td>
+          <td>59</td>
+          <td>.631</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <td class="team">Chicago Cubs</td>
+          <td>88</td>
+          <td>73</td>
+          <td>.547</td>
+          <td>13.5</td>
+        </tr>
+        <tr>
+          <td class="team">Pittsburgh Pirates</td>
+          <td>81</td>
+          <td>79</td>
+          <td>.506</td>
+          <td>20.0</td>
+        </tr>
+        <tr>
+          <td class="team">St. Louis Cardinals</td>
+          <td>77</td>
+          <td>83</td>
+          <td>.481</td>
+          <td>24.0</td>
+        </tr>
+        <tr>
+          <td class="team">Cincinnati Reds</td>
+          <td>74</td>
+          <td>86</td>
+          <td>.463</td>
+          <td>27.0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="division-card">
+      <h3>NL West</h3>
+      <table>
+        <thead>
+          <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="team">Los Angeles Dodgers</td>
+          <td>98</td>
+          <td>62</td>
+          <td>.613</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <td class="team">San Diego Padres</td>
+          <td>89</td>
+          <td>71</td>
+          <td>.556</td>
+          <td>9.0</td>
+        </tr>
+        <tr>
+          <td class="team">Arizona Diamondbacks</td>
+          <td>86</td>
+          <td>74</td>
+          <td>.538</td>
+          <td>12.0</td>
+        </tr>
+        <tr>
+          <td class="team">San Francisco Giants</td>
+          <td>65</td>
+          <td>95</td>
+          <td>.406</td>
+          <td>33.0</td>
+        </tr>
+        <tr>
+          <td class="team">Colorado Rockies</td>
+          <td>57</td>
+          <td>103</td>
+          <td>.356</td>
+          <td>41.0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </section>
+
+  <footer>
+    Source: MLB Stats API (statsapi.mlb.com), retrieved 2026-09-26.
+    W = Wins, L = Losses, PCT = Winning percentage, GB = Games behind division leader.
+  </footer>
+</body>
+</html>
