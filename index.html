@@ -14,6 +14,9 @@
     --al: #c8102e;
     --nl: #002d72;
     --gold: #d4af37;
+    --green: #3ecf8e;
+    --blue: #4da3ff;
+    --gray: #5a6785;
   }
   * { box-sizing: border-box; }
   body {
@@ -100,7 +103,64 @@
     font-weight: 700;
     color: var(--gold);
   }
-  td.team { color: var(--text); }
+  tbody tr.row-eliminated td {
+    color: var(--gray) !important;
+  }
+  td.team { color: var(--text); display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.4rem;
+    border-radius: 999px;
+    line-height: 1.4;
+  }
+  .badge-division { background: rgba(212,175,55,0.18); color: var(--gold); border: 1px solid rgba(212,175,55,0.4); }
+  .badge-wildcard { background: rgba(62,207,142,0.15); color: var(--green); border: 1px solid rgba(62,207,142,0.4); }
+  .badge-playoff { background: rgba(77,163,255,0.15); color: var(--blue); border: 1px solid rgba(77,163,255,0.4); }
+  .badge-eliminated { background: rgba(90,103,133,0.15); color: var(--gray); border: 1px solid rgba(90,103,133,0.4); }
+
+  .picture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+  .picture-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem 1.2rem;
+  }
+  .picture-card h3 {
+    margin: 0 0 0.8rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .picture-card h3 small { text-transform: none; letter-spacing: normal; color: var(--muted); font-weight: 400; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .dot-division { background: var(--gold); }
+  .dot-wildcard { background: var(--green); }
+  .dot-playoff { background: var(--blue); }
+  .dot-eliminated { background: var(--gray); }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.25rem 0.55rem;
+    font-size: 0.85rem;
+  }
+  .empty { color: var(--muted); font-size: 0.85rem; }
+
   footer {
     max-width: 1100px;
     margin: 2rem auto 0;
@@ -119,6 +179,27 @@
   </header>
 
   <section class="league-section">
+    <div class="picture-grid">
+      <div class="picture-card">
+        <h3><span class="dot dot-division"></span>Clinched Division</h3>
+        <div class="pill-row"><span class="pill">Rays</span><span class="pill">Braves</span><span class="pill">Brewers</span><span class="pill">Dodgers</span></div>
+      </div>
+      <div class="picture-card">
+        <h3><span class="dot dot-wildcard"></span>Clinched Wild Card</h3>
+        <div class="pill-row"><span class="pill">Yankees</span><span class="pill">Red Sox</span><span class="pill">Cubs</span><span class="pill">Padres</span></div>
+      </div>
+      <div class="picture-card">
+        <h3><span class="dot dot-playoff"></span>Clinched Playoff Berth<br><small>(division not yet decided)</small></h3>
+        <div class="pill-row"><span class="pill">Guardians</span><span class="pill">White Sox</span></div>
+      </div>
+      <div class="picture-card">
+        <h3><span class="dot dot-eliminated"></span>Eliminated</h3>
+        <div class="pill-row"><span class="pill">Orioles</span><span class="pill">Blue Jays</span><span class="pill">Twins</span><span class="pill">Tigers</span><span class="pill">Royals</span><span class="pill">Mariners</span><span class="pill">Athletics</span><span class="pill">Angels</span><span class="pill">Marlins</span><span class="pill">Nationals</span><span class="pill">Mets</span><span class="pill">Pirates</span><span class="pill">Cardinals</span><span class="pill">Reds</span><span class="pill">Giants</span><span class="pill">Rockies</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="league-section">
     <div class="league-heading al">
       <div class="bar"></div>
       <h2>American League</h2>
@@ -131,36 +212,36 @@
           <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="team">Tampa Bay Rays</td>
+        <tr class="">
+          <td class="team">Rays<span class="badge badge-division">Clinched Division</span></td>
           <td>97</td>
           <td>63</td>
           <td>.606</td>
-          <td>0.0</td>
+          <td>-</td>
         </tr>
-        <tr>
-          <td class="team">New York Yankees</td>
+        <tr class="">
+          <td class="team">Yankees<span class="badge badge-wildcard">Clinched Wild Card</span></td>
           <td>93</td>
           <td>68</td>
           <td>.578</td>
           <td>4.5</td>
         </tr>
-        <tr>
-          <td class="team">Boston Red Sox</td>
+        <tr class="">
+          <td class="team">Red Sox<span class="badge badge-wildcard">Clinched Wild Card</span></td>
           <td>87</td>
           <td>74</td>
           <td>.540</td>
           <td>10.5</td>
         </tr>
-        <tr>
-          <td class="team">Baltimore Orioles</td>
+        <tr class="row-eliminated">
+          <td class="team">Orioles<span class="badge badge-eliminated">Eliminated</span></td>
           <td>79</td>
           <td>82</td>
           <td>.491</td>
           <td>18.5</td>
         </tr>
-        <tr>
-          <td class="team">Toronto Blue Jays</td>
+        <tr class="row-eliminated">
+          <td class="team">Blue Jays<span class="badge badge-eliminated">Eliminated</span></td>
           <td>78</td>
           <td>82</td>
           <td>.488</td>
@@ -176,36 +257,36 @@
           <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="team">Cleveland Guardians</td>
+        <tr class="">
+          <td class="team">Guardians<span class="badge badge-playoff">Clinched Playoff Berth</span></td>
           <td>84</td>
           <td>76</td>
           <td>.525</td>
-          <td>0.0</td>
+          <td>-</td>
         </tr>
-        <tr>
-          <td class="team">Chicago White Sox</td>
+        <tr class="">
+          <td class="team">White Sox<span class="badge badge-playoff">Clinched Playoff Berth</span></td>
           <td>83</td>
           <td>77</td>
           <td>.519</td>
           <td>1.0</td>
         </tr>
-        <tr>
-          <td class="team">Minnesota Twins</td>
+        <tr class="row-eliminated">
+          <td class="team">Twins<span class="badge badge-eliminated">Eliminated</span></td>
           <td>76</td>
           <td>84</td>
           <td>.475</td>
           <td>8.0</td>
         </tr>
-        <tr>
-          <td class="team">Detroit Tigers</td>
+        <tr class="row-eliminated">
+          <td class="team">Tigers<span class="badge badge-eliminated">Eliminated</span></td>
           <td>75</td>
           <td>85</td>
           <td>.469</td>
           <td>9.0</td>
         </tr>
-        <tr>
-          <td class="team">Kansas City Royals</td>
+        <tr class="row-eliminated">
+          <td class="team">Royals<span class="badge badge-eliminated">Eliminated</span></td>
           <td>68</td>
           <td>92</td>
           <td>.425</td>
@@ -221,36 +302,36 @@
           <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="team">Houston Astros</td>
+        <tr class="">
+          <td class="team">Astros</td>
           <td>79</td>
           <td>81</td>
           <td>.494</td>
-          <td>0.0</td>
+          <td>-</td>
         </tr>
-        <tr>
-          <td class="team">Texas Rangers</td>
+        <tr class="">
+          <td class="team">Rangers</td>
           <td>79</td>
           <td>81</td>
           <td>.494</td>
-          <td>0.0</td>
+          <td>-</td>
         </tr>
-        <tr>
-          <td class="team">Seattle Mariners</td>
+        <tr class="row-eliminated">
+          <td class="team">Mariners<span class="badge badge-eliminated">Eliminated</span></td>
           <td>74</td>
           <td>86</td>
           <td>.463</td>
           <td>5.0</td>
         </tr>
-        <tr>
-          <td class="team">Athletics</td>
+        <tr class="row-eliminated">
+          <td class="team">Athletics<span class="badge badge-eliminated">Eliminated</span></td>
           <td>64</td>
           <td>96</td>
           <td>.400</td>
           <td>15.0</td>
         </tr>
-        <tr>
-          <td class="team">Los Angeles Angels</td>
+        <tr class="row-eliminated">
+          <td class="team">Angels<span class="badge badge-eliminated">Eliminated</span></td>
           <td>62</td>
           <td>98</td>
           <td>.388</td>
@@ -273,36 +354,36 @@
           <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="team">Atlanta Braves</td>
+        <tr class="">
+          <td class="team">Braves<span class="badge badge-division">Clinched Division</span></td>
           <td>93</td>
           <td>67</td>
           <td>.581</td>
-          <td>0.0</td>
+          <td>-</td>
         </tr>
-        <tr>
-          <td class="team">Philadelphia Phillies</td>
+        <tr class="">
+          <td class="team">Phillies</td>
           <td>87</td>
           <td>73</td>
           <td>.544</td>
           <td>6.0</td>
         </tr>
-        <tr>
-          <td class="team">Miami Marlins</td>
+        <tr class="row-eliminated">
+          <td class="team">Marlins<span class="badge badge-eliminated">Eliminated</span></td>
           <td>79</td>
           <td>81</td>
           <td>.494</td>
           <td>14.0</td>
         </tr>
-        <tr>
-          <td class="team">Washington Nationals</td>
+        <tr class="row-eliminated">
+          <td class="team">Nationals<span class="badge badge-eliminated">Eliminated</span></td>
           <td>76</td>
           <td>84</td>
           <td>.475</td>
           <td>17.0</td>
         </tr>
-        <tr>
-          <td class="team">New York Mets</td>
+        <tr class="row-eliminated">
+          <td class="team">Mets<span class="badge badge-eliminated">Eliminated</span></td>
           <td>73</td>
           <td>87</td>
           <td>.456</td>
@@ -318,36 +399,36 @@
           <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="team">Milwaukee Brewers</td>
+        <tr class="">
+          <td class="team">Brewers<span class="badge badge-division">Clinched Division</span></td>
           <td>101</td>
           <td>59</td>
           <td>.631</td>
-          <td>0.0</td>
+          <td>-</td>
         </tr>
-        <tr>
-          <td class="team">Chicago Cubs</td>
+        <tr class="">
+          <td class="team">Cubs<span class="badge badge-wildcard">Clinched Wild Card</span></td>
           <td>88</td>
           <td>73</td>
           <td>.547</td>
           <td>13.5</td>
         </tr>
-        <tr>
-          <td class="team">Pittsburgh Pirates</td>
+        <tr class="row-eliminated">
+          <td class="team">Pirates<span class="badge badge-eliminated">Eliminated</span></td>
           <td>81</td>
           <td>79</td>
           <td>.506</td>
           <td>20.0</td>
         </tr>
-        <tr>
-          <td class="team">St. Louis Cardinals</td>
+        <tr class="row-eliminated">
+          <td class="team">Cardinals<span class="badge badge-eliminated">Eliminated</span></td>
           <td>77</td>
           <td>83</td>
           <td>.481</td>
           <td>24.0</td>
         </tr>
-        <tr>
-          <td class="team">Cincinnati Reds</td>
+        <tr class="row-eliminated">
+          <td class="team">Reds<span class="badge badge-eliminated">Eliminated</span></td>
           <td>74</td>
           <td>86</td>
           <td>.463</td>
@@ -363,36 +444,36 @@
           <tr><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="team">Los Angeles Dodgers</td>
+        <tr class="">
+          <td class="team">Dodgers<span class="badge badge-division">Clinched Division</span></td>
           <td>98</td>
           <td>62</td>
           <td>.613</td>
-          <td>0.0</td>
+          <td>-</td>
         </tr>
-        <tr>
-          <td class="team">San Diego Padres</td>
+        <tr class="">
+          <td class="team">Padres<span class="badge badge-wildcard">Clinched Wild Card</span></td>
           <td>89</td>
           <td>71</td>
           <td>.556</td>
           <td>9.0</td>
         </tr>
-        <tr>
-          <td class="team">Arizona Diamondbacks</td>
+        <tr class="">
+          <td class="team">D-backs</td>
           <td>86</td>
           <td>74</td>
           <td>.538</td>
           <td>12.0</td>
         </tr>
-        <tr>
-          <td class="team">San Francisco Giants</td>
+        <tr class="row-eliminated">
+          <td class="team">Giants<span class="badge badge-eliminated">Eliminated</span></td>
           <td>65</td>
           <td>95</td>
           <td>.406</td>
           <td>33.0</td>
         </tr>
-        <tr>
-          <td class="team">Colorado Rockies</td>
+        <tr class="row-eliminated">
+          <td class="team">Rockies<span class="badge badge-eliminated">Eliminated</span></td>
           <td>57</td>
           <td>103</td>
           <td>.356</td>
@@ -407,6 +488,7 @@
   <footer>
     Source: MLB Stats API (statsapi.mlb.com), retrieved 2026-09-26.
     W = Wins, L = Losses, PCT = Winning percentage, GB = Games behind division leader.
+    "Clinched Playoff Berth" means the team has secured a postseason spot but whether it's the division title or a wild card is not yet mathematically decided.
   </footer>
 </body>
 </html>
